@@ -208,6 +208,43 @@ async function main() {
     }
    }
   }
+  async function testFollowingFeedRedirect() {
+   const strict = { platformSettings: { ig: 'strict' } };
+   const on = { ...strict, hide_ig_recommended_feed: true };
+   const home = '<div id="home"></div>';
+   const route = page => page.evaluate(() => location.pathname + location.search);
+   const stays = async (settings, pathname, label, prepare = null) => {
+    const env = await open('ig', home, settings, prepare, pathname);
+    await env.page.waitForTimeout(700);
+    assert.equal(await route(env.page), pathname, label);
+    checks++;
+    await env.close();
+   };
+   const redirects = async (settings, label, prepare = null) => {
+    const env = await open('ig', home, settings, prepare, '/');
+    // The listener navigates synchronously, so let the evaluate call return first.
+    await env.page.evaluate(() => setTimeout(() => window.changeSettings({ hide_ig_recommended_feed: true }), 0));
+    await env.page.waitForURL(url => url.pathname === '/' && url.search === '?variant=following', { timeout: 3000 })
+     .catch(error => { throw new Error(`${label}: expected the Following feed: ${error.message}`); });
+    assert.equal(await env.page.evaluate(() => Number(sessionStorage.getItem('ft_ig_following_at')) > 0), true, `${label}: records the loop guard`);
+    checks += 2;
+    await env.close();
+   };
+   await stays(strict, '/', 'the setting is off by default');
+   await stays({ ...strict, hide_ig_recommended_feed: false }, '/', 'an explicit false stays off');
+   await stays(on, '/?variant=following', 'the Following feed is not redirected again');
+   await stays(on, '/?variant=favorites', 'the Favorites feed is not redirected');
+   await stays(on, '/direct/inbox/', 'messages are not redirected');
+   await stays(on, '/fixture_author/', 'profiles are not redirected');
+   await stays({ ...on, ft_timer_end: Date.now() + 60000, ft_timer_type: 'break' }, '/', 'a break leaves the home page alone');
+   await stays({ ...on, ft_enabled: false }, '/', 'a disabled extension leaves the home page alone');
+   await stays({ ...on, focusMode: false }, '/', 'focus mode off leaves the home page alone');
+   await stays(on, '/', 'a recent redirect is not repeated', () => sessionStorage.setItem('ft_ig_following_at', String(Date.now())));
+   await redirects(strict, 'Strict mode');
+   await redirects({ platformSettings: { ig: 'allow' } }, 'Passive mode with focus mode on');
+   await redirects({ platformSettings: { ig: 'allow' }, ft_timer_end: Date.now() + 60000, ft_timer_type: 'work' }, 'a work timer');
+   await redirects(strict, 'an expired loop guard', () => sessionStorage.setItem('ft_ig_following_at', String(Date.now() - 6000)));
+  }
   async function testInstagramWarningExits() {
    const exits = [];
    for (const exit of ['break', '/', '/direct/inbox/']) {
@@ -274,6 +311,7 @@ async function main() {
   }
   await testInstagramWarningExits();
   await testReelPermalinkHandling();
+  await testFollowingFeedRedirect();
   // Captured markup plus explicit adversarial derivatives; no authenticated-site claim.
   const cases = [
    ['ig-followed', 'ig-followed-post', false], ['ig-control-only', 'ig-suggested-post', false],
