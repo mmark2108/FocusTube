@@ -576,5 +576,11 @@
   "redditFeedHidden": { "message": "Votre fil est en pause" },
   "redditFeedGuidance": { "message": "La recherche, les publications et les commentaires restent accessibles." },
   "redditSearch": { "message": "Rechercher sur Reddit" },
-  "catalogDirection": { "message": "ltr" }
+  "catalogDirection": { "message": "ltr" },
+  "hideRecommendedFeed": {
+    "message": "Fil des abonnements uniquement"
+  },
+  "hideRecommendedFeedDescription": {
+    "message": "Ouvre l'accueil Instagram sur le fil des abonnements au lieu des recommandations"
+  }
 }

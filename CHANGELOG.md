@@ -4,6 +4,8 @@ All notable project-facing changes are documented here.
 
 ## [Unreleased]
 
+- Added an opt-in Instagram setting that opens the home page on Instagram's own Following feed instead of recommendations. Default off, no new permissions, no follow-graph inference. Instagram performs the filtering; FocusTube only redirects `/` to `/?variant=following` while focus blocking is active, with a reload-loop guard.
+
 ## [2.5.0] - 2026-10-01
 
 - Added current Reddit feed controls for Home, News, Popular, All, and community listings while preserving individual posts, comments, and search. Strict and work timers hide supported feeds; Warn permits a page-local reveal; Passive and breaks leave them visible. Feed navigation keeps the old listing hidden until Reddit replaces it. Legacy Reddit is outside this change. The new host access is limited to `reddit.com` and `www.reddit.com` relative to 2.4.1.

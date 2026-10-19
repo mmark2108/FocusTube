@@ -576,5 +576,11 @@
   "redditFeedHidden": { "message": "تم إيقاف موجزك مؤقتًا" },
   "redditFeedGuidance": { "message": "لا يزال البحث والمنشورات والتعليقات متاحة." },
   "redditSearch": { "message": "ابحث في ريديت" },
-  "catalogDirection": { "message": "rtl" }
+  "catalogDirection": { "message": "rtl" },
+  "hideRecommendedFeed": {
+    "message": "موجز المتابَعين فقط"
+  },
+  "hideRecommendedFeedDescription": {
+    "message": "يفتح الصفحة الرئيسية في إنستغرام على موجز المتابَعين بدلاً من التوصيات"
+  }
 }

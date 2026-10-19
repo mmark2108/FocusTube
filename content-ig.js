@@ -45,6 +45,7 @@ const Instagram = {
         changes.hide_ig_stories ||
         changes.hide_ig_reels_nav ||
         changes.hide_ig_suggested ||
+        changes.hide_ig_recommended_feed ||
         changes.popup_visible_ig ||
         changes.restrictHiddenPlatforms ||
         changes.visualHideHiddenPlatforms
@@ -227,6 +228,7 @@ const Instagram = {
         return;
       }
     }
+    if (this.shouldForceFollowingFeed(path) && this.forceFollowingFeed()) return;
     const shouldHideNav =
       isFocusActive &&
       CONFIG.visualHiding.igReelsNav &&
@@ -293,6 +295,36 @@ const Instagram = {
       action,
       reason,
     });
+  },
+  followingFeedUrl: "/?variant=following",
+  shouldForceFollowingFeed: function (path) {
+    if (path !== "/" && path !== "") return false;
+    const variant = new URLSearchParams(window.location.search).get("variant");
+    return (
+      CONFIG.visualHiding.igRecommendedFeed &&
+      FocusState.shouldBlock &&
+      Utils.shouldApplyVisualHiding("ig") &&
+      variant !== "following" &&
+      variant !== "favorites"
+    );
+  },
+  forceFollowingFeed: function () {
+    // Loop guard: if Instagram strips the parameter again, redirect at most
+    // once every 5 seconds instead of reloading forever.
+    try {
+      const last = Number(sessionStorage.getItem("ft_ig_following_at") || 0);
+      if (Date.now() - last < 5000) return false;
+      sessionStorage.setItem("ft_ig_following_at", String(Date.now()));
+    } catch (e) {
+      Utils.reportError("saving following-feed redirect guard", e);
+    }
+    this.isRedirecting = true;
+    Utils.logStat();
+    window.location.replace(this.followingFeedUrl);
+    setTimeout(() => {
+      this.isRedirecting = false;
+    }, 2000);
+    return true;
   },
   isBlockablePath: function (path) {
     return (

@@ -50,7 +50,7 @@ The project supports Chromium browsers with a Manifest V3 build and Firefox with
 ### Supported Surfaces
 
 - **YouTube:** Redirects Shorts and Playables routes in Strict Mode or work sessions, warns in Warn Mode, and can hide their navigation and discovery shelves plus the English "Most relevant" shelf on the Subscriptions page.
-- **Instagram:** Blocks Reels/Explore paths; can hide Reels navigation and Stories; and optionally filters suggested or sponsored posts when detected.
+- **Instagram:** Blocks Reels/Explore paths; can hide Reels navigation and Stories; and optionally filters suggested or sponsored posts when detected. Can also open the home page on Instagram's own Following feed (opt-in).
 - **TikTok:** Blocks common feed/video surfaces while allowing safer areas such as messages and settings.
 - **Facebook:** Blocks Reels paths and can hide Reels navigation, Stories, and People You Might Know suggestions.
 - **LinkedIn:** Can hide the main feed and "Add to your feed" sidebar card, with optional filtering for suggested, outside-network, promoted, and network-activity posts when detected.

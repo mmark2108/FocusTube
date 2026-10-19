@@ -576,5 +576,11 @@
   "redditFeedHidden": { "message": "Tu feed está en pausa" },
   "redditFeedGuidance": { "message": "La búsqueda, las publicaciones y los comentarios siguen disponibles." },
   "redditSearch": { "message": "Buscar en Reddit" },
-  "catalogDirection": { "message": "ltr" }
+  "catalogDirection": { "message": "ltr" },
+  "hideRecommendedFeed": {
+    "message": "Solo feed de seguidos"
+  },
+  "hideRecommendedFeedDescription": {
+    "message": "Abre el inicio de Instagram en el feed de seguidos en vez de recomendaciones"
+  }
 }

@@ -576,5 +576,11 @@
   "redditFeedHidden": { "message": "Feed Anda dijeda" },
   "redditFeedGuidance": { "message": "Pencarian, postingan, dan komentar tetap tersedia." },
   "redditSearch": { "message": "Cari di Reddit" },
-  "catalogDirection": { "message": "ltr" }
+  "catalogDirection": { "message": "ltr" },
+  "hideRecommendedFeed": {
+    "message": "Hanya feed Mengikuti"
+  },
+  "hideRecommendedFeedDescription": {
+    "message": "Buka beranda Instagram di feed Mengikuti, bukan rekomendasi"
+  }
 }

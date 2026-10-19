@@ -38,6 +38,7 @@ const CONFIG = {
     igReelsNav: true,
     // Granular filters are opt-in; upgrades must not hide additional posts.
     igSuggested: false,
+    igRecommendedFeed: false,
     fbReelsNav: true,
     fbPeopleYouMightKnow: true,
     liFeed: true,
@@ -994,6 +995,7 @@ const UI = {
       "hide_yt_playables",
       "hide_ig_reels_nav",
       "hide_ig_suggested",
+      "hide_ig_recommended_feed",
       "hide_fb_reels_nav",
       "hide_fb_people_you_might_know",
       "hide_li_feed",
@@ -1043,6 +1045,7 @@ const UI = {
         ytPlayables: res.hide_yt_playables !== false,
         igReelsNav: res.hide_ig_reels_nav !== false,
         igSuggested: res.hide_ig_suggested === true,
+        igRecommendedFeed: res.hide_ig_recommended_feed === true,
         fbReelsNav: res.hide_fb_reels_nav !== false,
         fbPeopleYouMightKnow: res.hide_fb_people_you_might_know !== false,
         liFeed: res.hide_li_feed !== false,
@@ -1246,6 +1249,10 @@ const UI = {
       CONFIG.visualHiding.igSuggested =
         changes.hide_ig_suggested.newValue === true;
       Utils.applyVisualHidingClasses();
+    }
+    if (changes.hide_ig_recommended_feed) {
+      CONFIG.visualHiding.igRecommendedFeed =
+        changes.hide_ig_recommended_feed.newValue === true;
     }
     if (changes.hide_fb_reels_nav) {
       CONFIG.visualHiding.fbReelsNav =

@@ -76,6 +76,9 @@ LinkedIn suggestion/promotion and network-activity settings are independent; gra
 
 The filters coalesce mutation bursts within the detected feed root, restore detached/replaced nodes, and bound stub repair attempts. Instagram uses a compact collapsed placeholder while LinkedIn preserves the post's measured height; Instagram strict/work modes keep the owned sentinel hidden, while warn/passive modes retain the compact "View anyway" row. The filters do not scroll or request posts. Hidden media is paused, including subsequent play events; restoration does not start playback. Extension-owned notices use the existing localization helpers and scoped direction metadata. No feed content is stored or sent elsewhere.
 
+## Instagram Following Feed
+
+`hide_ig_recommended_feed` (default false, including when the key is missing) is a navigation setting, not a DOM filter. While `FocusState.shouldBlock` is true and visual hiding applies to Instagram, `content-ig.js` redirects the exact home path `/` to `/?variant=following` so Instagram itself serves the Following feed. Existing `variant=following` and `variant=favorites` values are left alone. FocusTube does not infer the follow graph, does not intercept requests and cannot end Instagram's own pagination. A `sessionStorage` timestamp limits the redirect to once per five seconds so a site that removes the parameter cannot cause a reload loop. Breaks and a disabled extension skip the redirect.
 ## DOM and SPA Behavior
 
 Content scripts inspect and modify the site's DOM. They add classes, inject or remove extension overlays and styles, cache inline styles before hiding elements, and track media that must be paused while a warning is visible. The shared `ensureBody()` helper waits for `document.body` when scripts start before the body exists and tracks its temporary observer so disabling can disconnect it.

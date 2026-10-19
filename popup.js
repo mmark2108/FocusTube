@@ -324,6 +324,7 @@ const PLATFORM_SETTINGS = {
     { key: "hide_ig_stories", labelKey: "hideStories" },
     { key: "hide_ig_reels_nav", labelKey: "hideReelsButton" },
     { key: "hide_ig_suggested", labelKey: "hideSuggestedPosts", defaultValue: false },
+    { key: "hide_ig_recommended_feed", labelKey: "hideRecommendedFeed", defaultValue: false },
   ],
   fb: [
     { key: "hide_fb_stories", labelKey: "hideStories" },

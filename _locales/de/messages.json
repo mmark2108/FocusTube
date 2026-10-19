@@ -576,5 +576,11 @@
   "redditFeedHidden": { "message": "Dein Feed ist pausiert" },
   "redditFeedGuidance": { "message": "Suche, Beiträge und Kommentare bleiben verfügbar." },
   "redditSearch": { "message": "Reddit durchsuchen" },
-  "catalogDirection": { "message": "ltr" }
+  "catalogDirection": { "message": "ltr" },
+  "hideRecommendedFeed": {
+    "message": "Nur Folge-Feed"
+  },
+  "hideRecommendedFeedDescription": {
+    "message": "Instagram-Startseite im Feed „Folge ich“ statt mit Empfehlungen öffnen"
+  }
 }

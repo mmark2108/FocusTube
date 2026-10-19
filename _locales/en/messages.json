@@ -174,5 +174,11 @@
   "notificationTimeForBreak": { "message": "Time for a $DURATION$-minute break.", "placeholders": { "duration": { "content": "$1" } } },
   "notificationFocusComplete": { "message": "Focus session complete." },
   "catalogLanguage": { "message": "en" },
-  "catalogDirection": { "message": "ltr" }
+  "catalogDirection": { "message": "ltr" },
+  "hideRecommendedFeed": {
+    "message": "Following feed only"
+  },
+  "hideRecommendedFeedDescription": {
+    "message": "Open the Instagram home page on the Following feed instead of recommendations"
+  }
 }
